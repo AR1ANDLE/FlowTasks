@@ -30,11 +30,11 @@ export default function Header({ setFilter, addTask }) {
 
   return (
     <>
-      <header className="w-full min-h-20 bg-amber-700 flex flex-wrap gap-5 justify-center items-center p-4">
+      <header className="w-full min-h-20 bg-green-800 flex flex-wrap gap-20 justify-center items-center p-4">
         <select
           name="priority"
           value={filters.priority}
-          className="bg-white h-10"
+          className="bg-white rounded-full"
           onChange={handleFilter}
         >
           <option value="">All priorities</option>
@@ -44,23 +44,23 @@ export default function Header({ setFilter, addTask }) {
         </select>
 
         <label>
-          Assigned to:
           <input
             type="text"
             name="assignee"
             value={filters.assignee}
-            className="bg-white"
+            placeholder="Assigned to...."
+            className="bg-white rounded-full px-2"
             onChange={handleFilter}
           />
         </label>
 
         <label>
-          Search:
           <input
             type="text"
             name="title_like"
             value={filters.title_like}
-            className="bg-white"
+            placeholder="Search......"
+            className="bg-white rounded-full px-2"
             onChange={handleFilter}
           />
         </label>
@@ -68,7 +68,7 @@ export default function Header({ setFilter, addTask }) {
         <button
           type="button"
           onClick={() => setIsOpen(true)}
-          className="bg-white cursor-pointer px-4 py-2 rounded-lg"
+          className="bg-green-300  cursor-pointer px-5 py-2 rounded-full"
         >
           Add Task
         </button>
