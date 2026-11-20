@@ -1,3 +1,5 @@
+import Swal from "sweetalert2";
+
 export default function Modal({
   isOpen,
   onClose,
@@ -11,11 +13,29 @@ export default function Modal({
 
   function handleFormSubmit(e) {
     e.preventDefault();
-    onSubmit(form);
+    let inputs = document
+      .querySelector(".modal")
+      .querySelectorAll("input, textarea, select");
+    inputs.forEach((input) => {
+      let value = input.value;
+      if (!value) {
+        input.style.outline = "1px solid red";
+        return Swal.fire({
+          toast: true,
+          position: "top-end",
+          icon: "error",
+          title: `Please enter a valid ${input.name}`,
+          showConfirmButton: false,
+          timer: 3000,
+          timerProgressBar: true,
+        });
+      }
+    });
+    return onSubmit(form);
   }
 
   return (
-    <div className="fixed inset-0 z-50 bg-black/50 flex items-center justify-center p-4">
+    <div className="fixed inset-0 z-50 bg-black/50 flex items-center justify-center p-4 modal">
       <form
         onSubmit={handleFormSubmit}
         className="bg-white rounded-xl p-6 w-full max-w-md space-y-4"

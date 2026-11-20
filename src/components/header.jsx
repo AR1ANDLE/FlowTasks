@@ -76,14 +76,6 @@ export default function Header({ setFilter, addTask }) {
           className="bg-white rounded-full px-3 py-2 shadow-md"
           onChange={handleFilter}
         />
-
-        <button
-          type="button"
-          onClick={() => setIsOpen(true)}
-          className="bg-indigo-900 text-white shadow-md cursor-pointer px-5 py-2 rounded-full"
-        >
-          Add Task
-        </button>
         <button
           type="button"
           onClick={() => {

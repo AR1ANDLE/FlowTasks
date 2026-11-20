@@ -25,6 +25,7 @@ export default function Todo({ filter = "", cards = [], setCards }) {
   const [isOpen, setIsOpen] = useState(false);
   const [form, setForm] = useState(initialForm);
   const [selectedId, setSelectedId] = useState(null);
+  const [aiModalOpen, setAiModalOpen] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -45,6 +46,43 @@ export default function Todo({ filter = "", cards = [], setCards }) {
 
     fetchData();
   }, [filter, setCards, retryCount]);
+
+  function openAiModal() {
+    setForm({ ...initialForm, tags: [] });
+    setAiModalOpen(true);
+  }
+  function closeAiModal() {
+    setAiModalOpen(false);
+  }
+  function handleAiSubmit() {}
+
+  function AiModal() {
+    return (
+      <div className="fixed inset-0 z-50 bg-black/50 flex items-center justify-center p-4">
+        <form className="bg-white rounded-xl p-6 w-full max-w-md space-y-4">
+          <div className="flex justify-between items-center">
+            <h2 className="text-xl font-bold">What would you like to do?</h2>
+
+            <button
+              type="button"
+              className="cursor-pointer"
+              onClick={closeAiModal}
+            >
+              X
+            </button>
+          </div>
+
+          <textarea
+            name="description"
+            value={form.description ?? ""}
+            onChange={handleChange}
+            placeholder="Describe your task or idea here..."
+            className="border p-2 w-full rounded"
+          />
+        </form>
+      </div>
+    );
+  }
 
   function openAddModal() {
     setSelectedId(null);
@@ -142,10 +180,9 @@ export default function Todo({ filter = "", cards = [], setCards }) {
         showConfirmButton: false,
       });
     } catch (err) {
-      console.error("Submit error:", err.response?.status, err.response?.data);
       Swal.fire({
         icon: "error",
-        title: isEditing ? "Update failed" : "Add failed",
+        title: err.response.data.details[0].message,
         text: "Could not save your changes.",
         customClass: { container: "!z-[9999]" },
       });
@@ -217,12 +254,18 @@ export default function Todo({ filter = "", cards = [], setCards }) {
 
   return (
     <div className="w-full min-h-dvh bg-gray-100 p-4">
-      <div className="flex justify-end mb-4">
+      <div className="flex justify-end mb-4 gap-3">
         <button
           onClick={openAddModal}
           className="text-white bg-indigo-900 hover:bg-indigo-800 rounded-2xl cursor-pointer px-4 py-2.5 text-sm font-medium"
         >
           + Add Card
+        </button>
+        <button
+          onClick={openAiModal}
+          className="text-white bg-indigo-900 hover:bg-indigo-800 rounded-2xl cursor-pointer px-4 py-2.5 text-sm font-medium"
+        >
+          Generate with AI
         </button>
       </div>
 
@@ -266,6 +309,10 @@ export default function Todo({ filter = "", cards = [], setCards }) {
           title={selectedId ? "Modify card" : "Add card"}
           submitLabel={selectedId ? "Save changes" : "Add card"}
         />
+      )}
+
+      {aiModalOpen && (
+        <AiModal isOpen={aiModalOpen} onClose={() => setAiModalOpen(false)} />
       )}
     </div>
   );
