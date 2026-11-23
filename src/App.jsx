@@ -1,17 +1,13 @@
-import { useState } from "react";
-import Todo from "./components/body";
+import { useEffect } from "react";
+import { getAssignee, getTasks } from "./data/tasks";
 import Header from "./components/header";
-import axios from "axios";
+
+const assignee = await getAssignee();
 
 export default function App() {
-  const [filter, setFilter] = useState("");
-  const [cards, setCards] = useState([]);
-
   return (
     <>
-      <Header setFilter={setFilter} />
-
-      <Todo filter={filter} cards={cards} setCards={setCards} />
+      <Header></Header>
     </>
   );
 }

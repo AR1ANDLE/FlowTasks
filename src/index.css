@@ -4,6 +4,12 @@
 @import "@fontsource-variable/noto-sans";
 @import "@fontsource-variable/playfair-display";
 
+button,
+select,
+option {
+  @apply cursor-pointer;
+}
+
 @custom-variant dark (&:is(.dark *));
 
 .badge {
@@ -11,11 +17,10 @@
 }
 
 .badge-green {
-  @apply bg-green-400 text-black
+  @apply bg-green-400 text-black;
 }
 
 :root {
-
   --background: oklch(1 0 0);
 
   --foreground: oklch(0.147 0.004 49.3);
@@ -82,7 +87,6 @@
 }
 
 .dark {
-
   --background: oklch(0.147 0.004 49.3);
 
   --foreground: oklch(0.986 0.002 67.8);
@@ -147,10 +151,9 @@
 }
 
 @theme inline {
+  --font-sans: "Noto Sans Variable", sans-serif;
 
-  --font-sans: 'Noto Sans Variable', sans-serif;
-
-  --font-heading: 'Playfair Display Variable', serif;
+  --font-heading: "Playfair Display Variable", serif;
 
   --color-sidebar-ring: var(--sidebar-ring);
 
