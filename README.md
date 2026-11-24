@@ -1,16 +1,52 @@
-# React + Vite
+# FlowTasks
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+### Technical Documentation & Implementation Journal
 
-Currently, two official plugins are available:
+A technical knowledge base documenting the technologies, libraries, React hooks, JavaScript concepts, components, and implementation decisions behind FlowTasks.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+<p align="center">
+  <img src="https://img.shields.io/badge/React-2026-61DAFB?logo=react&logoColor=white" />
+  <img src="https://img.shields.io/badge/JavaScript-ES6+-F7DF1E?logo=javascript&logoColor=black" />
+  <img src="https://img.shields.io/badge/Axios-HTTP%20Client-671DDF?logo=axios&logoColor=white" />
+  <img src="https://img.shields.io/badge/Tailwind_CSS-Styling-06B6D4?logo=tailwindcss&logoColor=white" />
+</p>
 
-## React Compiler
+<p align="center">
+  <a href="https://flowtasks-rho.vercel.app/">Live Demo</a> ·
+  <a href="https://github.com/AR1ANDLE/FlowTasks">Repository</a>
+</p>
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the Oxlint configuration
+<h2 align="center">Contents</h2>
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+| Section | Description |
+|---|---|
+| [Implementation Log](#-implementation-log) | Development history |
+
+---
+
+<h2 align="center">Implementation Log</h2>
+
+### 01. `useFetch()` — Custom React Hook
+
+Created a reusable custom React Hook to handle API data fetching across components.
+
+**Technologies & Hooks:**
+- `useState()` — Manages the fetched data, loading state and errors.
+- `useEffect()` — Triggers the API request when the component mounts or its dependencies change.
+- `axios` — Handles HTTP requests.
+- `async/await` — Manages asynchronous operations.
+
+**Purpose:**
+
+Avoid repeating data-fetching logic across components by centralizing API requests and their associated states in one reusable hook.
+
+**How it works:**
+
+1. Initializes the data, loading and error states.
+2. Executes the API request inside `useEffect()`.
+3. Updates the data state when the request succeeds.
+4. Captures errors if the request fails.
+5. Updates the loading state when the operation finishes.
+6. Returns the states so components can consume the fetched data.
