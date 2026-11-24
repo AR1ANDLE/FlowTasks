@@ -1,5 +1,8 @@
-import useFetch from "./service/useFetch";
-
+import Header from "./components/Header";
 export default function App() {
-  const data = useFetch();
+  return (
+    <>
+      <Header></Header>
+    </>
+  );
 }

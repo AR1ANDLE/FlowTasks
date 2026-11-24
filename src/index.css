@@ -1,5 +1,25 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap");
 @import "tailwindcss";
 
+@theme {
+  --font-heading: "Playfair Display", serif;
+  --font-body: "Inter", serif;
+  --font-special: "DM Sans", serif;
+  --color-bg: #e3dba9;
+  --color-accent: #639d75;
+  --color-text: #1b1b1b;
+}
+
 body {
-  @apply bg-[#DBEE82];
+  @apply bg-bg font-heading;
+}
+
+button,
+select,
+input {
+  @apply cursor-pointer;
+}
+
+.center {
+  @apply flex justify-center items-center;
 }
